@@ -61,7 +61,7 @@ class TestProxy(unittest.TestCase):
     def test_publish(self):
         mqtt = MockMQTT()
         proxy = MQTTDeviceProxy(mqtt)
-        proxy.publish(source_data)
+        proxy.process_message(mqtt, source_data)
         self.assertEqual(len(mqtt.published), 3)
         for p in published_data:
             self.assertTrue(p in mqtt.published, "Could not find {} in {}".format(p, mqtt.published))
