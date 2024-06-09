@@ -19,8 +19,8 @@ unregister["connected"] = 0
 
 data = {
     "State": 0,
-    "DC/0/Voltage": 12.22,
-    "DC/0/Current" : 1.1,
+    "Dc/0/Voltage": 12.22,
+    "Dc/0/Current" : 1.1,
     "Yield/User": 1100,
     "Load/I": 0.1,
     "Yield/Power": 80
