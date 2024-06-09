@@ -11,6 +11,8 @@ solarcharger:
   CustomName:
     default: "My Smart Solar Charger"
     persist: true
+  NrOfTrackers:
+    default: 1  
   DC/0/Voltage:
     description: "V"
     format: "{} V"
