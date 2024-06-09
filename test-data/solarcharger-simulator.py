@@ -18,12 +18,13 @@ unregister = copy.deepcopy(registration)
 unregister["connected"] = 0
 
 data = {
-    "State": 0,
-    "Dc/0/Voltage": 12.22,
-    "Dc/0/Current" : 1.1,
-    "Yield/User": 1100,
-    "Load/I": 0.1,
-    "Yield/Power": 80
+    "State": 4,
+    "Dc/0/Voltage": 13.22,
+    "Dc/0/Current" : 5.1,
+    "Yield/System": 1100,
+    "Load/I": 15,
+    "PV/0/P": 8,
+    "PV/0/Name": "Pannello 1"
 }
 
 def on_connect(client, userdata, flags, rc):

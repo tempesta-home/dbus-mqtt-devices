@@ -19,7 +19,7 @@ solarcharger:
   Dc/0/Current: 
     description: "A"
     format: "{} A"
-  Yield/User:
+  Yield/System:
     description: "kWh"
     format: "{} kWh"
   State:
@@ -27,9 +27,9 @@ solarcharger:
   Load/I:
     description: "A"
     format: "{} A"
-  Yield/Power:
-    description: "W"
-    format: "{} W"
+  Pv/0/P:
+    description: "A"
+    format: "{} A"
 
 
 # https://github.com/victronenergy/venus/wiki/dbus#temperatures
