@@ -19,7 +19,7 @@ solarcharger:
   Dc/0/Current: 
     description: "A"
     format: "{} A"
-  Yield/System:
+  Yield/Power:
     description: "kWh"
     format: "{} kWh"
   State:
@@ -30,7 +30,13 @@ solarcharger:
   Pv/0/P:
     description: "A"
     format: "{} A"
-
+  Pv/V:
+    description: "V"
+    format: "{} V"
+  MppOperationMode:
+    description: "0=Off; 1=Voltage or Current Limited; 2=Maximum Power"
+  ErrorCode:
+    description: "Error Description"
 
 # https://github.com/victronenergy/venus/wiki/dbus#temperatures
 temperature:

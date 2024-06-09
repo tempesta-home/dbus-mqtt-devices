@@ -23,8 +23,8 @@ data = {
     "Dc/0/Current" : 5.1,
     "Yield/System": 1100,
     "Load/I": 15,
-    "PV/0/P": 8,
-    "PV/0/Name": "Pannello 1"
+    "Pv/0/P": 8,
+    "Pv/0/Name": "Pannello 1"
 }
 
 def on_connect(client, userdata, flags, rc):
