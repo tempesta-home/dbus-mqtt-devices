@@ -6,7 +6,7 @@ clientid = "ss001"
 
 registration = {
   "clientId": clientid,
-  "product": "0xA055",
+  "productId": 41045,
   "connected": 1,
   "version": "v0.9",
   "services": {
