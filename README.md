@@ -1,4 +1,4 @@
-# dbus-mqtt-devices 0.8.0
+# dbus-mqtt-devices 0.9.0
 
 This VenusOS Driver for GX devices works in concert with the [Victron dbus-mqtt gateway](https://github.com/victronenergy/dbus-mqtt), now known as dbus-flashmq. It has been designed to allow Wi-Fi enabled edge devices (such as ESP32, some Arduino microcontrollers or Raspberry Pis) to self register to the dbus over MQTT. This avoids the need for additional dedicated custom drivers to be developed and deployed.
 

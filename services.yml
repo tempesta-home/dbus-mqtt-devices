@@ -5,7 +5,7 @@
 
 
 # https://github.com/victronenergy/venus/wiki/dbus#solar-chargers
-mpptsmartsolar:
+solarcharger:
   ProductId:
     default: 41045 # Smart Solar Charger MPPT 100/15
   CustomName:

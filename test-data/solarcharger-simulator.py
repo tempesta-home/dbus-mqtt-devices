@@ -9,7 +9,7 @@ registration = {
   "connected": 1,
   "version": "v0.9",
   "services": {
-    "ss1": "mpptsmartsolar"
+    "ss1": "solarcharger"
   }
 }
 
@@ -41,7 +41,7 @@ def on_message(client, userdata, msg):
     deviceId = dbus_msg.get("deviceInstance").get("ss1") # UPDATE THIS
 
     for key in data:
-        topic = "W/{}/mpptsmartsolar/{}/{}".format(portalId, deviceId, key) # UPDATE THIS
+        topic = "W/{}/solarcharger/{}/{}".format(portalId, deviceId, key) # UPDATE THIS
         print("{} = {}".format(topic, data.get(key) ) )
         client.publish(topic, json.dumps({ "value": data.get(key) }) )
 
