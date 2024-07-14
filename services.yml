@@ -4,6 +4,59 @@
 # For product id see https://gist.github.com/seidler2547/52f3e91cbcbf2fa257ae79371bb78588
 
 
+# https://github.com/victronenergy/venus/wiki/dbus#ac-chargers
+accharger:
+  ProductId:
+    default: 41761 #Blue Smart IP22 Charger 12|15 (3)
+  CustomName:
+    default: "My Blue Smart IP22 Charger"
+    persist: true
+  Ac/In/L1/I:
+    description: "A AC"
+    format: "{} A"
+  Ac/In/L1/P:
+    description: "W"
+    format: "{} W"
+  Ac/In/CurrentLimit:
+    description: "A"
+    format: "{} A AC"
+  NrOfOutputs:
+    default: 3  
+  Dc/0/Voltage:
+    description: "V"
+    format: "{} V"
+  Dc/0/Current: 
+    description: "A"
+    format: "{} A"
+  Dc/0/Temperature: 
+    description: "°C"
+    format: "{} °C"
+  Dc/1/Voltage:
+    description: "V"
+    format: "{} V"
+  Dc/1/Current: 
+    description: "A"
+    format: "{} A"
+  Dc/1/Temperature: 
+    description: "°C"
+    format: "{} °C"
+  Dc/2/Voltage:
+    description: "V"
+    format: "{} V"
+  Dc/2/Current: 
+    description: "A"
+    format: "{} A"
+  Dc/2/Temperature: 
+    description: "°C"
+    format: "{} °C"
+  State:
+    description: "0=Off; 2=Fault; 3=Bulk; 4=Absorption; 5=Float; 6=Storage; 7=Equalize; 252=External control"
+  Mode:
+    description: "1=On; 4=Off"
+  ErrorCode:
+    description: "Error Description"
+
+
 # https://github.com/victronenergy/venus/wiki/dbus#solar-chargers
 solarcharger:
   ProductId:
@@ -369,3 +422,13 @@ evcharger:
     default: 1
     min: 0
     max: 20
+
+# https://github.com/victronenergy/venus/wiki/dbus#digitalinput    
+digitalinput:
+  ProductId:
+    default: "Custom" # Generic Temperature Input
+  CustomName:
+    default: "My Digital Input Sensor"
+    persist: true
+  Status:
+    default: "Off"

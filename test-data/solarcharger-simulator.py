@@ -2,7 +2,7 @@ import paho.mqtt.client as mqtt
 import json
 import copy
 
-clientid = "ss001"
+clientid = "ss002"
 
 registration = {
   "clientId": clientid,
@@ -10,7 +10,7 @@ registration = {
   "connected": 1,
   "version": "v0.9",
   "services": {
-    "ss1": "solarcharger"
+    "ss2": "solarcharger"
   }
 }
 
@@ -40,7 +40,7 @@ def on_message(client, userdata, msg):
 
     dbus_msg = json.loads(msg.payload)
     portalId = dbus_msg.get("portalId")
-    deviceId = dbus_msg.get("deviceInstance").get("ss1") # UPDATE THIS
+    deviceId = dbus_msg.get("deviceInstance").get("ss2") # UPDATE THIS
 
     for key in data:
         topic = "W/{}/solarcharger/{}/{}".format(portalId, deviceId, key) # UPDATE THIS
