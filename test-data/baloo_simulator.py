@@ -23,6 +23,7 @@ solar_data = {
     "Pv/0/P": 8,
     "Pv/0/Name": "Pannello 1"
 }
+
 ac_clientid = "ac001"
 ac_registration = {
   "clientId": ac_clientid,
@@ -55,25 +56,31 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe("device/{}/DBus".format(solar_clientid))
     client.publish("device/{}/Status".format(solar_clientid), json.dumps(solar_registration))
 
+    client.subscribe("device/{}/DBus".format(ac_clientid))
+    client.publish("device/{}/Status".format(ac_clientid), json.dumps(ac_registration))
+
+
+
 # The callback for when a PUBLISH message is received from the server.
 def on_message(solar_client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
-
     dbus_msg = json.loads(msg.payload)
     portalId = dbus_msg.get("portalId")
+
     deviceId = dbus_msg.get("deviceInstance").get("ss1") # UPDATE THIS
-    for key in solar_data:
-        topic = "W/{}/solarcharger/{}/{}".format(portalId, deviceId, key) # UPDATE THIS
-        print("{} = {}".format(topic, solar_data.get(key) ) )
-        client.publish(topic, json.dumps({ "value": solar_data.get(key) }) )
-
-    dbus_msg = json.loads(msg.payload)
-    portalId = dbus_msg.get("portalId")
+    print(str(deviceId))
+    if (deviceId is not None):
+      for key in solar_data:
+          topic = "W/{}/solarcharger/{}/{}".format(portalId, deviceId, key) # UPDATE THIS
+          print("{} = {}".format(topic, solar_data.get(key) ) )
+          client.publish(topic, json.dumps({ "value": solar_data.get(key) }) )
+    
     deviceId = dbus_msg.get("deviceInstance").get("ac1") # UPDATE THIS
-    for key in ac_data:
-        topic = "W/{}/accharger/{}/{}".format(portalId, deviceId, key) # UPDATE THIS
-        print("{} = {}".format(topic, ac_data.get(key) ) )
-        client.publish(topic, json.dumps({ "value": ac_data.get(key) }) )
+    if (deviceId is not None):
+      for key in ac_data:
+          topic = "W/{}/charger/{}/{}".format(portalId, deviceId, key) # UPDATE THIS
+          print("{} = {}".format(topic, ac_data.get(key) ) )
+          client.publish(topic, json.dumps({ "value": ac_data.get(key) }) )
 
 client = mqtt.Client()
 client.on_connect = on_connect
