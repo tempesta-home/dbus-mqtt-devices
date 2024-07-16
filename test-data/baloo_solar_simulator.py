@@ -24,45 +24,15 @@ solar_data = {
     "Pv/0/Name": "Pannello 1"
 }
 
-ac_clientid = "ac001"
-ac_registration = {
-  "clientId": ac_clientid,
-  "productId": 41761,
-  "connected": 1,
-  "version": "v0.1",
-  "services": {
-    "ac1": "accharger"
-  }
-}
-ac_unregister = copy.deepcopy(ac_registration)
-ac_unregister["connected"] = 0
-ac_data = {
-    "State": 3,
-    "Ac/In/L1/I": "1",
-    "Ac/In/L1/P": "30",
-    "Dc/0/Voltage": 14.22,
-    "Dc/0/Current" : 5.5,
-    "Dc/0/Temperature": 24,
-    "Dc/0/Voltage": 12.72,
-    "Dc/0/Current" : 1.5,
-    "Dc/0/Temperature": 22,
-    "Mode": 1
-}
-
-def on_connect(client, userdata, flags, rc):
+def on_connect_solar(client, userdata, flags, rc):
     print("Connected with result code "+str(rc))
     # Subscribing in on_connect() means that if we lose the connection and
     # reconnect then subscriptions will be renewed.
     client.subscribe("device/{}/DBus".format(solar_clientid))
     client.publish("device/{}/Status".format(solar_clientid), json.dumps(solar_registration))
 
-    client.subscribe("device/{}/DBus".format(ac_clientid))
-    client.publish("device/{}/Status".format(ac_clientid), json.dumps(ac_registration))
-
-
-
 # The callback for when a PUBLISH message is received from the server.
-def on_message(solar_client, userdata, msg):
+def on_message_solar(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
     dbus_msg = json.loads(msg.payload)
     portalId = dbus_msg.get("portalId")
@@ -74,24 +44,16 @@ def on_message(solar_client, userdata, msg):
           topic = "W/{}/solarcharger/{}/{}".format(portalId, deviceId, key) # UPDATE THIS
           print("{} = {}".format(topic, solar_data.get(key) ) )
           client.publish(topic, json.dumps({ "value": solar_data.get(key) }) )
-    
-    deviceId = dbus_msg.get("deviceInstance").get("ac1") # UPDATE THIS
-    if (deviceId is not None):
-      for key in ac_data:
-          topic = "W/{}/charger/{}/{}".format(portalId, deviceId, key) # UPDATE THIS
-          print("{} = {}".format(topic, ac_data.get(key) ) )
-          client.publish(topic, json.dumps({ "value": ac_data.get(key) }) )
 
-client = mqtt.Client()
-client.on_connect = on_connect
-client.on_message = on_message
-client.will_set("device/{}/Status".format(solar_clientid), json.dumps(solar_unregister)) # UPDATE THIS
-
-client.connect("venus.local", 1883, 60)
+client_solar = mqtt.Client()
+client_solar.on_connect = on_connect_solar
+client_solar.on_message = on_message_solar
+client_solar.will_set("device/{}/Status".format(solar_clientid), json.dumps(solar_unregister)) # UPDATE THIS
+client_solar.connect("venus.local", 1883, 60)
+client_solar.loop_forever()
 
 # Blocking call that processes network traffic, dispatches callbacks and
 # handles reconnecting.
 # Other loop*() functions are available that give a threaded interface and a
 # manual interface.
-client.loop_forever()
 

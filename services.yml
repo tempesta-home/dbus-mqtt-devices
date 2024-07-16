@@ -432,3 +432,30 @@ digitalinput:
     persist: true
   Status:
     default: "Off"
+
+# https://github.com/victronenergy/venus/wiki/dbus#battery
+battery:
+  ProductId:
+    default: "Custom" # Generic Temperature Input
+  CustomName:
+    default: "My Smart Battery Sense"
+    persist: true
+  Dc/0/Voltage:
+    description: "V"
+    format: "{} V"
+  Dc/0/Current: 
+    description: "A"
+    format: "{} A"
+  Dc/0/Temperature: 
+    description: "°C"
+    format: "{} °C"
+  Soc: 
+    description: "%"
+    format: "{} %"
+  Dc/1/Voltage:
+    description: "V"
+    format: "{} V"
+  Settings/HasStarterVoltage:
+    default: 1
+    persist: true
+  
