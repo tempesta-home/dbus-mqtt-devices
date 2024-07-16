@@ -436,7 +436,7 @@ digitalinput:
 # https://github.com/victronenergy/venus/wiki/dbus#battery
 battery:
   ProductId:
-    default: "Custom" # Generic Temperature Input
+    default: 41904 # Generic Temperature Input
   CustomName:
     default: "My Smart Battery Sense"
     persist: true

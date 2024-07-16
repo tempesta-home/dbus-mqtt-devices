@@ -5,7 +5,7 @@ import copy
 battery_clientid = "bt001"
 battery_registration = {
   "clientId": battery_clientid,
-  "productId": 0xFFFF,
+  "productId": 41904,
   "connected": 1,
   "version": "v0.1",
   "services": {
