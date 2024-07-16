@@ -5,7 +5,7 @@ import copy
 battery_clientid = "bt001"
 battery_registration = {
   "clientId": battery_clientid,
-  "productId": 41761,
+  "productId": 0xFFFF,
   "connected": 1,
   "version": "v0.1",
   "services": {
@@ -17,6 +17,7 @@ battery_unregister["connected"] = 0
 battery_data = {
     "Dc/0/Voltage": 14.22,
     "Dc/0/Current" : 5.5,
+    "Dc/0/Power" : 5.5,
     "Dc/0/Temperature": 24,
     "Dc/1/Voltage": 12.72,
     "Soc": 89
@@ -34,10 +35,10 @@ def on_message_battery(client, userdata, msg):
     dbus_msg = json.loads(msg.payload)
     portalId = dbus_msg.get("portalId")
 
-    deviceId = dbus_msg.get("deviceInstance").get("ac1") # UPDATE THIS
+    deviceId = dbus_msg.get("deviceInstance").get("bt1") # UPDATE THIS
     if (deviceId is not None):
       for key in battery_data:
-          topic = "W/{}/charger/{}/{}".format(portalId, deviceId, key) # UPDATE THIS
+          topic = "W/{}/battery/{}/{}".format(portalId, deviceId, key) # UPDATE THIS
           print("{} = {}".format(topic, battery_data.get(key) ) )
           client.publish(topic, json.dumps({ "value": battery_data.get(key) }) )
 
