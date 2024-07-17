@@ -462,3 +462,53 @@ battery:
     default: 1
     persist: true
   
+# https://github.com/victronenergy/venus/wiki/dbus#multi-rs-and-other-future-new-inverterchargers
+multi:
+  ProductId:
+    default: 9824 #MultiPlus 12/500/20-16
+  CustomName:
+    default: "My Fake Multi"
+    persist: true
+  Ac/In/1/L1/V:
+    description: "V"
+    format: "{} V"
+  Ac/In/1/L1/F:
+    description: "Hz"
+    format: "{} Hz"
+  Ac/In/1/L1/I:
+    description: "A"
+    format: "{} A"
+  Ac/In/1/L1/P:
+    description: "W"
+    format: "{} W"
+  Ac/In/1/L1/Type:
+    description: "Type" #AC IN1 type: 0 (Not used), 1 (Grid), 2(Generator), 3(Shore)
+    default: 3
+  Ac/ActiveIn/ActiveInput:
+    description: "Active Input" #Active input: 0 = ACin-1, 1 = ACin-2,
+    default: 0
+  Dc/0/Voltage:
+    description: "V"
+    format: "{} V"
+  Dc/0/Current: 
+    description: "A"
+    format: "{} A"
+  Dc/0/Temperature: 
+    description: "°C"
+    format: "{} °C"
+  Dc/1/Voltage:
+    description: "V"
+    format: "{} V"
+  Dc/1/Current: 
+    description: "A"
+    format: "{} A"
+  Dc/1/Temperature: 
+    description: "°C"
+    format: "{} °C"
+  Mode:
+    default: 1 #1=Charger Only;2=Inverter Only;3=On;4=Off
+  State:
+    description: "0=Off; 2=Fault; 3=Bulk; 4=Absorption; 5=Float; 6=Storage; 7=Equalize; 252=External control"
+  ErrorCode:
+    description: "Error Description"
+  

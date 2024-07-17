@@ -2,7 +2,7 @@ import paho.mqtt.client as mqtt
 import json
 import copy
 
-battery_clientid = "bt001"
+battery_clientid = "bt002"
 battery_registration = {
   "clientId": battery_clientid,
   "productId": 41904,
