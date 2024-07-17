@@ -463,30 +463,30 @@ battery:
     persist: true
   
 # https://github.com/victronenergy/venus/wiki/dbus#multi-rs-and-other-future-new-inverterchargers
-multi:
+vebus:
   ProductId:
     default: 9824 #MultiPlus 12/500/20-16
   CustomName:
     default: "My Fake Multi"
     persist: true
-  Ac/In/1/L1/V:
+  Ac/ActiveIn/L1/V:
     description: "V"
     format: "{} V"
-  Ac/In/1/L1/F:
+  Ac/ActiveIn/L1/F:
     description: "Hz"
     format: "{} Hz"
-  Ac/In/1/L1/I:
+  Ac/ActiveIn/L1/I:
     description: "A"
     format: "{} A"
-  Ac/In/1/L1/P:
+  Ac/ActiveIn/L1/P:
     description: "W"
     format: "{} W"
-  Ac/In/1/L1/Type:
-    description: "Type" #AC IN1 type: 0 (Not used), 1 (Grid), 2(Generator), 3(Shore)
-    default: 3
   Ac/ActiveIn/ActiveInput:
-    description: "Active Input" #Active input: 0 = ACin-1, 1 = ACin-2,
+    description: "Type" #AC 0 = ACin-1, 1 = ACin-2
     default: 0
+  Settings/SystemSetup/AcInput1:
+    description: "Type" #0 (Not used), 1 (Grid), 2(Generator), 3(Shore)
+    default: 3
   Dc/0/Voltage:
     description: "V"
     format: "{} V"

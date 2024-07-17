@@ -9,17 +9,17 @@ multi_registration = {
   "connected": 1,
   "version": "v0.1",
   "services": {
-    "ml1": "multi"
+    "ml1": "vebus"
   }
 }
 multi_unregister = copy.deepcopy(multi_registration)
 multi_unregister["connected"] = 0
 multi_data = {
     "State": 3,
-    "Ac/In/1/L1/V": 230,
-    "Ac/In/1/L1/F": 60,
-    "Ac/In/1/L1/I": 1,
-    "Ac/In/1/L1/P": 30,
+    "Ac/ActiveIn/L1/V": 230,
+    "Ac/ActiveIn/L1/F": 60,
+    "Ac/ActiveIn/L1/I": 1,
+    "Ac/ActiveIn/L1/P": 30,
     "Dc/1/Voltage": 14.22,
     "Dc/1/Current" : 5.5,
     "Dc/1/Temperature": 24,
@@ -45,7 +45,7 @@ def on_message_multi(client, userdata, msg):
     deviceId = dbus_msg.get("deviceInstance").get("ml1") # UPDATE THIS
     if (deviceId is not None):
       for key in multi_data:
-          topic = "W/{}/VeBus/257 /{}/{}".format(portalId, deviceId, key) # UPDATE THIS
+          topic = "W/{}/VeBus/{}/{}".format(portalId, deviceId, key) # UPDATE THIS
           print("{} = {}".format(topic, multi_data.get(key) ) )
           client.publish(topic, json.dumps({ "value": multi_data.get(key) }) )
 
